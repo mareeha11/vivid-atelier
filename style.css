@@ -1265,3 +1265,96 @@ button {
         grid-template-columns: 1fr; /* 1 column on mobile */
     }
 }
+
+/* Make body and container flexible */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fraunces', serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+/* Grids: Fabrics, Necklines, Sleeves */
+.grid-container {
+    display: grid;
+    gap: 15px;
+}
+
+/* Fabrics & Necklines: 3 per row desktop, auto-fit mobile */
+#fabricGallery,
+#necklineGrid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+/* Sleeves: 4 per row desktop, auto-fit mobile */
+#sleeveGrid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+/* Images scale to fit container */
+.grid-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Forms & Inputs */
+.standard-input,
+textarea,
+select {
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+/* Card spacing */
+.customization-card {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Flex row for form fields (Step 5) */
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .form-group-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #fabricGallery,
+    #necklineGrid,
+    #sleeveGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .customization-card {
+        padding: 15px;
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #fabricGallery,
+    #necklineGrid,
+    #sleeveGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+}
