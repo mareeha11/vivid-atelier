@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivid Atelier | Digital Customization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images\vivid-logo.png" type="image/png">
+</head>
+<body>
+
+    <!-- Top Announcement -->
+    <div class="top-announcement">
+        Custom-Made Mukhawars | Processing Period: 5–7 Weeks
+    </div>
+
+    <!-- Cart Icon -->
+    <div class="cart-icon-container" onclick="goToCart()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" />
+        </svg>
+        <span id="cartCount">0</span>
+    </div>
+
+    <!-- Header -->
+    <header id="mainHeader" class="banner">
+        <div class="logo">VIVID</div>
+        <h1>Digital Customization</h1>
+    </header>
+
+    <div class="container">
+        <!-- Step 1: Fabric Source -->
+        <section id="step1" class="step active">
+            <h2 class="no-underline">1. Fabric Source <span class="required-star">*</span></h2>
+            <div class="source-selection">
+                <button class="btn-secondary" onclick="handleFabricSource('Customer')">Use My Own Fabric</button>
+                <button class="btn-primary" onclick="handleFabricSource('Vivid Collection')">Vivid Collection</button>
+            </div>
+        </section>
+
+        <!-- Step 2: Fabric Details -->
+        <section id="step2" class="step">
+            <h2 class="no-underline">2. Fabric Details <span class="required-star">*</span></h2>
+            <div id="customerUploadArea" class="form-group spacing-bottom" style="display:none;">
+                <label>Upload fabric photo <span class="required-star">*</span></label>
+                <input type="file" id="ownFabricPhoto" accept="image/*" class="standard-input" onchange="previewUpload(this)">
+                <div id="uploadPreview"></div>
+            </div>
+            <div id="vividFabricArea" style="display:none;">
+                <div id="fabricGallery" class="grid-container"></div>
+            </div>
+            <div class="form-group-block spacing-top">
+                <label>Fabric Type</label>
+                <select id="fabricType" class="standard-input">
+                    <option>Cotton</option>
+                    <option>Crepe</option>
+                    <option>Silk</option>
+                    <option>Blended Fabric</option>
+                    <option>Light Crepe</option>
+                    <option>Light Silk</option>
+                </select>
+            </div>
+            <div class="form-group-block spacing-top">
+                <label>Fabric Length</label>
+                <select id="fabricLength" class="standard-input">
+                    <option>3.5 Meters - Standard</option>
+                    <option>4 Meters</option>
+                    <option>5 Meters</option>
+                </select>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-back" onclick="prevStep(2)">Back</button>
+                <button class="btn-primary" onclick="nextStep(2)">Continue</button>
+            </div>
+        </section>
+
+        <!-- Step 3: Neckline -->
+        <section id="step3" class="step">
+            <h2 class="no-underline">3. Neckline <span class="required-star">*</span></h2>
+            <div id="necklineGrid" class="grid-container"></div>
+            <div class="nav-buttons">
+                <button class="btn-back" onclick="prevStep(3)">Back</button>
+                <button class="btn-primary" onclick="nextStep(3)">Continue</button>
+            </div>
+        </section>
+
+        <!-- Step 4: Sleeve Style -->
+        <section id="step4" class="step">
+            <h2 class="no-underline">4. Sleeve Style <span class="required-star">*</span></h2>
+            <div id="sleeveGrid" class="grid-container sleeves-row"></div>
+            <div class="nav-buttons">
+                <button class="btn-back" onclick="prevStep(4)">Back</button>
+                <button class="btn-primary" onclick="nextStep(4)">Continue</button>
+            </div>
+        </section>
+
+        <!-- Step 5: Customization -->
+
+        <section id="step5" class="step">
+            <div class="customization-card">
+                <h2 class="no-underline">5. Customization Details <span class="required-star">*</span></h2>
+
+                <div class="form-group-block">
+                <label>Embroidery Detail</label>
+                <select id="embroideryDetail" class="standard-input" onchange="toggleEmbroideryUpload()">
+                    <option value="pattern">Follow selected fabric pattern</option>
+                    <option value="custom">Fully customized embroidery</option>
+                </select>
+
+                <div id="embroideryUploadArea" style="display:none; margin-top:10px;">
+                    <div class="form-group-block">
+                    <label>Upload reference image</label>
+                    <input type="file" id="embroideryRef" accept="image/*" class="standard-input">
+                    </div>
+                    <div class="form-group-block">
+                    <label>Instructions / Description</label>
+                    <textarea id="embroideryInstructions" class="standard-input" placeholder="Provide any specific instructions..."></textarea>
+                    </div>
+                    <div class="form-group-block">
+                    <label>Embroidery Intensity</label>
+                    <select id="embroideryIntensity" class="standard-input">
+                        <option>Light</option>
+                        <option>Medium</option>
+                        <option>Heavy</option>
+                    </select>
+                    </div>
+                </div>
+                </div>
+
+                <div class="form-group-block spacing-top">
+                <h3>Stitching & Measurements</h3>
+                <label>Stitching Service</label>
+                <select id="stitchingService" class="standard-input" onchange="toggleMeasurements()">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+
+                <div id="measurementsArea" style="display:none; margin-top:15px;">
+                    <div class="form-group-block">
+                    <label>Measurement Selection</label>
+                    <select id="measurementType" class="standard-input" onchange="toggleMeasurementInput()">
+                        <option value="Standard">Standard size</option>
+                        <option value="Custom">Custom measurements</option>
+                    </select>
+                    </div>
+
+                    <div class="form-group-block" id="standardSizeArea" style="display:none; margin-top:10px;">
+                    <label>Select Size</label>
+                    <select id="standardSizeSelect" class="standard-input">
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                    </select>
+                    </div>
+
+                    <div class="form-group-block" id="customMeasurementsArea" style="display:none; margin-top:10px;">
+                    <label>Custom Measurements</label>
+                    <textarea id="customMeasurementsInput" class="standard-input" placeholder="Enter measurements..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group-block" style="margin-top:15px;">
+                    <label>Neckline Measurement <span class="required-star">*</span></label>
+                    <select id="necklineMeasurementSelect" class="standard-input" onchange="toggleCustomNecklineInput()">
+                    <option value="7">7"</option>
+                    <option value="7.5">7.5"</option>
+                    <option value="Custom">Custom</option>
+                    </select>
+                    <input type="text" id="necklineCustomInput" class="standard-input" placeholder="Inches" style="display:none; margin-top:10px;">
+                </div>
+                </div>
+
+                <div class="form-group-row spacing-top">
+                <div class="input-block">
+                    <label>Preferred Delivery Date <span class="required-star">*</span></label>
+                    <input type="date" id="deliveryDate" class="standard-input">
+                </div>
+                <div class="input-block">
+                    <label>Design Consultation</label>
+                    <select id="designConsult" class="standard-input">
+                    <option>No</option>
+                    <option>Yes</option>
+                    </select>
+                </div>
+                </div>
+
+                <div class="nav-buttons">
+                <button class="btn-back" onclick="prevStep(5)">Back</button>
+                <button class="btn-primary" onclick="addToCart()">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 6: Cart -->
+        <section id="step6" class="step">
+            <h2 class="no-underline">Your Cart</h2>
+            <hr class="cart-main-line">
+            <div class="cart-header-row">
+                <div>Product</div>
+                <div>Quantity</div>
+                <div>Total</div>
+            </div>
+            <hr class="cart-sub-line">
+            <div id="cartItemsList"></div>
+
+            <div class="cart-footer">
+                <hr class="cart-footer-line">
+                <div class="estimated-total-row">
+                    <span class="label">Estimated Total:</span>
+                    <span class="estimated-amount">Dhs. 1583.00</span>
+                </div>
+                <span class="tax-note">Taxes, discounts, and shipping calculated at checkout.</span>
+                <button class="btn-submit-cart" onclick="submitCustomization()">Customization Request</button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="subscribe-section">
+                <p class="subscribe-text">Subscribe to our emails</p>
+                <div class="email-input-wrapper">
+                    <input type="email" placeholder="Email" id="subscribeEmail">
+                    <button onclick="submitEmail()"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="footer-socials">
+                <a href="#" class="plum-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="plum-icon"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+        <hr class="footer-divider">
+        <div class="footer-payments">
+            <i class="fa-brands fa-apple-pay"></i>
+            <i class="fa-brands fa-cc-mastercard"></i>
+            <i class="fa-brands fa-cc-visa"></i>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026, Vivid</span>
+            <a href="#">Refund Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Shipping Policy</a>
+        </div>
+    </footer>
+
+    <div id="successMsg" class="success-overlay" style="display:none;">
+        <div class="success-card">
+            <h3>Thank You!</h3>
+            <p>All designs subject to final approval by Vivid team.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

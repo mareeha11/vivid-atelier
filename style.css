@@ -1,0 +1,1267 @@
+/* --- 1. Variables & Base --- */
+:root {
+  --vivid-bg: #F2F0E1;
+  --vivid-plum: #590533;
+  --vivid-grey: #D1D1D1;
+  --font-heading: 'Fraunces', serif;
+  --font-body: 'Shippori Mincho', serif;
+  --transition: 0.3s ease;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--vivid-bg);
+  color: var(--vivid-plum);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* --- 2. Header --- */
+.top-announcement {
+  background-color: var(--vivid-plum);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+}
+
+.banner {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.banner.header-hidden {
+  display: none;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  letter-spacing: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+/* --- 3. Layout --- */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+.step {
+  display: none;
+  animation: fadeIn 0.6s ease;
+}
+
+.step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2.no-underline, h3 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+h2.no-underline {
+  font-size: 1.8rem;
+  margin-bottom: 2.5rem;
+}
+
+/* --- 4. Selection Grids --- */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 2rem;
+}
+
+#sleeveGrid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-item {
+  background: #fff;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.grid-item.selected {
+  border: 1px solid var(--vivid-plum);
+  box-shadow: 0 10px 30px rgba(89, 5, 51, 0.1);
+}
+
+.grid-item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.grid-item p {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+
+/* --- 5. Forms --- */
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.standard-input, select, textarea {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid rgba(89, 5, 51, 0.3);
+  margin-top: 5px;
+  display: block;
+  font-family: var(--font-body);
+}
+
+textarea.standard-input {
+  max-width: 100%;
+  height: 80px;
+  resize: vertical;
+}
+
+.required-star {
+  color: var(--vivid-plum);
+  font-size: 1.2rem;
+}
+
+/* --- 6. Buttons --- */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.btn-primary, .btn-secondary, .btn-back {
+  padding: 1rem 2rem;
+  font-family: var(--font-heading);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--vivid-plum);
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--vivid-plum);
+  color: var(--vivid-plum);
+}
+
+.btn-back {
+  background: var(--vivid-grey);
+  border: none;
+}
+
+/* --- 7. Cart --- */
+.cart-icon-container {
+  position: absolute;
+  top: 50px;
+  right: 40px;
+  cursor: pointer;
+}
+
+#cartCount {
+  background: var(--vivid-plum);
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  padding: 2px 6px;
+  margin-left: -8px;
+  position: relative;
+  top: -10px;
+}
+
+.cart-header-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+
+.cart-item-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  gap: 15px;
+}
+
+.cart-product-col {
+  display: flex;
+  gap: 15px;
+}
+
+.cart-visual-stack-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100px;
+}
+
+.cart-visual-stack-vertical img {
+  width: 100px;
+  height: 130px;
+  object-fit: cover;
+  border: 1px solid var(--vivid-plum);
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cart-quantity-col {
+  display: flex;
+  justify-content: center;
+}
+
+.cart-total-col {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+}
+
+/* --- Cart Footer --- */
+.cart-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(89, 5, 51, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.estimated-total-row {
+  display: flex;
+  gap: 10px;
+}
+
+.estimated-amount {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.tax-note {
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.btn-submit-cart {
+  background-color: var(--vivid-plum);
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  font-family: var(--font-heading);
+  cursor: pointer;
+}
+
+/* --- 8. Footer --- */
+.site-footer {
+  padding: 2rem 3rem;
+  background: var(--vivid-bg);
+  border-top: 1px solid var(--vivid-grey);
+  font-size: 0.85rem;
+}
+
+/* LEFT / RIGHT alignment */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 0 1.5rem;
+}
+
+.subscribe-section {
+  text-align: left;
+}
+
+.email-input-wrapper {
+  display: flex;
+  border: 1px solid var(--vivid-plum);
+  padding: 8px 12px;
+  max-width: 450px;  /* max width */
+  width: 100%;        /* take full width on smaller screens */
+}
+.email-input-wrapper input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  outline: none;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-socials i {
+  font-size: 1.5rem;
+  color: var(--vivid-plum);
+}
+
+.footer-payments {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 20px 0;
+  opacity: 0.7;
+}
+
+
+/* --- 9. Success Overlay --- */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.success-card {
+  background: white;
+  padding: 40px;
+  max-width: 500px;
+  text-align: center;
+  border: 1px solid var(--vivid-plum);
+}
+
+.success-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* --- 10. Responsive --- */
+@media (max-width: 768px) {
+  .grid-container { grid-template-columns: repeat(2, 1fr); }
+  #sleeveGrid { grid-template-columns: repeat(2, 1fr); }
+
+  .cart-header-row { display: none; }
+  .cart-item-row { grid-template-columns: 1fr; }
+
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .subscribe-section { text-align: center; }
+}
+
+.footer-subscribe h3 {
+  font-size: 1.8rem;     /* increased size */
+  font-weight: 800;      /* slightly stronger */
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+}
+
+
+
+.footer-bottom a {
+  color: inherit;           /* same color as surrounding text */
+  text-decoration: none;    /* remove underline */
+  font-weight: normal;
+}
+
+.footer-bottom a:visited {
+  color: inherit;
+}
+
+.footer-bottom a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;   /* center horizontally */
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.footer-bottom a::before {
+  content: "•";
+  margin-right: 8px;
+  font-size: 0.75rem;
+}
+
+.subscribe-text {
+  font-size: 1.2rem;     /* bigger size */
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+}
+
+.cart-quantity-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* left-align the box and delete icon together */
+    gap: 10px; /* space between quantity box and delete icon */
+}
+
+.quantity-wrapper-row {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between buttons and number */
+}
+
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    background: #fff;
+}
+
+.delete-btn-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--vivid-plum);
+    font-size: 1.2rem; /* slightly bigger for clarity */
+    padding: 0;
+    transition: opacity 0.2s;
+}
+
+.delete-btn-action:hover {
+    opacity: 0.6;
+}
+
+/* --- Cart System --- */
+.cart-header-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: #444;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 5px 0;
+}
+
+.cart-item-row {
+    display: flex; /* flex for proper alignment */
+    justify-content: space-between;
+    align-items: center; /* vertical center for quantity and delete */
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    gap: 15px;
+}
+
+.cart-product-col {
+    flex: 2;
+    display: flex;
+    gap: 15px;
+    align-items: center; /* images and details vertically centered */
+}
+
+.cart-visual-stack-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100px;
+}
+
+.cart-visual-stack-vertical img {
+    width: 100px;
+    height: 130px;
+    object-fit: cover;
+    border: 1px solid var(--vivid-plum);
+    border-radius: 2px;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    font-family: var(--font-heading);
+}
+
+.info-grid p {
+    margin: 2px 0;
+    font-size: 0.85rem;
+    color: var(--vivid-plum);
+    line-height: 1.4;
+}
+
+/* --- Quantity & Delete Alignment --- */
+.cart-quantity-col {
+    flex: 1;
+    display: flex;
+    align-items: center; /* vertical center */
+    justify-content: center; /* horizontally centered with respect to column */
+    gap: 12px; /* space between quantity box and delete icon */
+}
+
+.quantity-wrapper-row {
+    display: flex;
+    align-items: center; /* vertical center of minus/number/plus */
+    gap: 8px;
+}
+
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    background: #fff;
+}
+
+.quantity-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.quantity-number {
+    display: inline-block;
+    min-width: 20px;
+    text-align: center;
+}
+
+.delete-btn-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--vivid-plum);
+    font-size: 1.2rem;
+    padding: 0;
+    transition: opacity 0.2s;
+}
+
+.delete-btn-action:hover {
+    opacity: 0.6;
+}
+
+.cart-total-col {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; /* vertical center */
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .cart-item-row {
+        flex-direction: column; /* stack product, quantity, total */
+        align-items: flex-start; /* start of column */
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    .cart-product-col {
+        width: 100%;
+        flex-direction: row; /* keep image + details side by side */
+        gap: 15px;
+        align-items: center;
+    }
+
+    .cart-quantity-col {
+        flex-direction: row; /* quantity + delete side by side */
+        justify-content: flex-start;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .quantity-wrapper-row {
+        flex-direction: row; /* minus/number/plus in one line */
+        align-items: center;
+    }
+
+    .cart-total-col {
+        justify-content: flex-start; /* total aligned left under quantity */
+        width: 100%;
+    }
+
+    .cart-visual-stack-vertical {
+        width: 80px;
+    }
+
+    .cart-visual-stack-vertical img {
+        width: 80px;
+        height: 100px;
+    }
+}
+
+.estimated-total-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline; /* align numbers and label perfectly */
+    gap: 10px;
+    width: 100%;
+}
+
+.estimated-total-row .label {
+    font-weight: normal;
+    font-size: 1rem;
+    color: var(--vivid-plum);
+}
+
+.estimated-amount {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--vivid-plum);
+}
+
+/* --- Success Overlay --- */
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45); /* subtle dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.success-card {
+    background: #fff;
+    padding: 40px 35px;
+    border-radius: 12px;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    font-family: var(--font-body);
+    color: var(--vivid-plum);
+    position: relative;
+}
+
+.success-card h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.success-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: var(--vivid-plum);
+}
+
+.countdown-text {
+    font-size: 0.9rem;
+    color: #590533cc;
+    font-style: italic;
+}
+
+/* Empty cart display */
+.empty-cart {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-cart h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--vivid-plum);
+    margin-bottom: 25px;
+}
+
+.empty-cart button {
+    background: var(--vivid-plum);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.empty-cart button:hover {
+    opacity: 0.8;
+}
+
+/* Ensure Estimated Total always right-aligned */
+.cart-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 2rem;
+    padding-top: 20px; 
+    border-top: 1px solid rgba(89, 5, 51, 0.2);
+}
+
+.estimated-total-row {
+    display: flex;
+    justify-content: flex-end; /* Right-align */
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+/* --- Cart Item Card --- */
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    border-radius: 12px;                     /* Rounded corners for elegance */
+    background: var(--vivid-bg);             /* Same as page background */
+    border: 1px solid rgba(89,5,51,0.08);    /* Subtle soft border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+/* Slight lift and shadow on hover to feel premium */
+.cart-item-row:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(89,5,51,0.05);
+}
+
+/* --- Images Stack --- */
+.cart-visual-stack-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 120px;
+}
+
+.cart-visual-stack-vertical img {
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(89,5,51,0.08);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Luxurious hover effect for each image */
+.cart-visual-stack-vertical img:hover {
+    transform: scale(1.07) rotate(-0.5deg); /* Slight zoom and tilt */
+    box-shadow: 0 10px 20px rgba(89,5,51,0.08);
+}
+
+/* Optional: add click effect */
+.cart-visual-stack-vertical img:active {
+    transform: scale(1.05) rotate(0deg);
+    box-shadow: 0 5px 10px rgba(89,5,51,0.05);
+}
+
+/* --- Product Details --- */
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.product-title {
+    font-size: 1.3rem;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    color: var(--vivid-plum);
+}
+
+.info-grid p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #3a1a2c;
+}
+
+/* --- Quantity Box --- */
+.quantity-wrapper-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(89,5,51,0.08);
+    border-radius: 6px;
+    padding: 6px 10px;
+    background: var(--vivid-bg);
+}
+
+.quantity-box button {
+    font-size: 1rem;
+    color: var(--vivid-plum);
+}
+
+/* --- Delete Icon --- */
+.delete-btn-action {
+    color: #b94f78;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.delete-btn-action:hover {
+    color: #590533;
+}
+
+/* --- Selection Grid Images Luxury Hover --- */
+.grid-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;                           /* Rounded corners */
+    border: 1px solid rgba(89,5,51,0.08);         /* Subtle border for elegance */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect for luxury feel */
+.grid-item img:hover {
+    transform: scale(1.05) rotate(-0.3deg);       /* Slight zoom and tilt */
+    box-shadow: 0 12px 20px rgba(89,5,51,0.07);  /* Soft luxurious shadow */
+}
+
+/* Click/active effect */
+.grid-item img:active {
+    transform: scale(1.03) rotate(0deg);
+    box-shadow: 0 6px 12px rgba(89,5,51,0.05);
+}
+
+/* Optional: subtle glow when selected */
+.grid-item.selected img {
+    border: 2px solid var(--vivid-plum);
+    box-shadow: 0 12px 25px rgba(89,5,51,0.1);
+}
+
+/* --- Full Grid Item Luxury Hover --- */
+.grid-item {
+    background: var(--vivid-bg);                 /* Same as page background */
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;                         /* Smooth rounded corners */
+    border: 1px solid rgba(89,5,51,0.08);       /* Subtle elegant border */
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    text-align: center;
+}
+
+/* Hover effect for entire card */
+.grid-item:hover {
+    transform: translateY(-5px) scale(1.05);    /* Slight lift and zoom */
+    box-shadow: 0 12px 25px rgba(89,5,51,0.12);/* Soft luxurious shadow */
+}
+
+/* Click/active effect */
+.grid-item:active {
+    transform: translateY(-2px) scale(1.03); 
+    box-shadow: 0 6px 15px rgba(89,5,51,0.08);
+}
+
+/* Image inside card */
+.grid-item img {
+    border-radius: 8px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Optional: Slight zoom on hover for image itself */
+.grid-item:hover img {
+    transform: scale(1.03);
+    box-shadow: 0 8px 18px rgba(89,5,51,0.07);
+}
+
+/* Selected state luxury highlight */
+.grid-item.selected {
+    border: 2px solid var(--vivid-plum);
+    box-shadow: 0 14px 30px rgba(89,5,51,0.15);
+}
+
+/* Card Styling */
+.customization-card {
+  background: var(--vivid-bg); /* same as page bg */
+  border-radius: 12px;
+  border: 1px solid rgba(89,5,51,0.1);
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(89,5,51,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.customization-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(89,5,51,0.15);
+}
+
+.customization-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: var(--vivid-plum);
+}
+
+/* Inputs, dropdowns, textarea styling */
+.customization-card input,
+.customization-card select,
+.customization-card textarea {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 15px;
+  border: 1px solid rgba(89,5,51,0.2);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.customization-card input:focus,
+.customization-card select:focus,
+.customization-card textarea:focus {
+  border-color: var(--vivid-plum);
+  box-shadow: 0 4px 15px rgba(89,5,51,0.1);
+  outline: none;
+}
+
+/* Buttons inside step 5 */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.nav-buttons .btn-primary,
+.nav-buttons .btn-back {
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.nav-buttons .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(89,5,51,0.1);
+}
+
+.nav-buttons .btn-back:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(89,5,51,0.05);
+}
+
+/* Responsive */
+@media (max-width:768px){
+  .customization-card { padding: 20px; }
+  .customization-card input,
+  .customization-card select,
+  .customization-card textarea { max-width: 100%; }
+  .nav-buttons { flex-direction: column; gap: 15px; }
+}
+
+/* Global button style */
+button, .btn-primary, .btn-secondary, .btn-back, .btn-submit-cart {
+    border-radius: 50px; /* fully rounded */
+    transition: all 0.3s ease;
+}
+
+/* Optional hover effect for luxury feel */
+button:hover, .btn-primary:hover, .btn-secondary:hover, .btn-back:hover, .btn-submit-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(89,5,51,0.15);
+}
+
+/* Remove default border selection for all grid images */
+.grid-item.selected {
+    border: none; /* remove black border */
+    box-shadow: 0 0 25px rgba(89,5,51,0.2); /* subtle luxurious glow */
+    transform: scale(1.05);
+}
+
+/* Smooth hover effect for all grid items */
+.grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(89,5,51,0.15);
+    cursor: pointer;
+}
+
+.customization-card {
+  background: var(--vivid-bg); 
+  border-radius: 12px;
+  border: 1px solid rgba(89,5,51,0.1);
+  padding: 30px;
+  margin: 40px 0 30px;  /* top spacing added here */
+  box-shadow: 0 8px 25px rgba(89,5,51,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#necklineCustomInput {
+  max-width: 120px;  /* shorter input */
+}
+
+#deliveryDate {
+  max-width: 120px;  /* shorter width */
+}
+
+#designConsult {
+  max-width: 80px;  /* shorter width */
+}
+
+h2.no-underline, h3 {
+  text-transform: none;  /* remove uppercase styling */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-transform: capitalize;  /* only first letter uppercase */
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* ========================= */
+/* Step 1: Fabric Source Buttons */
+#step1 .source-selection button {
+    padding: 18px 28px;  /* bigger clickable area */
+    font-size: 1rem;     /* slightly larger text */
+    border-radius: 8px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#step1 .source-selection button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(89,5,51,0.1);
+}
+
+/* ========================= */
+/* Step 2: Fabric Details select/input size */
+#fabricType {
+    max-width: 160px;   /* wider than Fabric Length */
+    padding: 8px 10px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+}
+
+/* Fabric Length - slightly shorter */
+#fabricLength {
+    max-width: 200px;   /* narrower than Fabric Type */
+    padding: 7px 10px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+/* Step 5: Customization Card Inputs */
+
+/* Embroidery Detail select */
+#step5 #embroideryDetail {
+    max-width: 260px;
+    padding: 8px 10px;
+    font-size: 0.95rem;
+}
+
+/* Embroidery Intensity select */
+#step5 #embroideryIntensity {
+    max-width: 180px;
+    padding: 7px 10px;
+    font-size: 0.9rem;
+}
+
+/* Stitching Service select */
+#step5 #stitchingService {
+    max-width: 80px;
+    padding: 7px 10px;
+    font-size: 0.9rem;
+}
+
+/* Measurement Selection select */
+#step5 #measurementType {
+    max-width: 200px;
+    padding: 7px 10px;
+    font-size: 0.9rem;
+}
+
+/* Standard Size select */
+#step5 #standardSizeSelect {
+    max-width: 80px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+}
+
+/* Custom Measurements textarea */
+#step5 #customMeasurementsInput {
+    max-width: 150px;
+    height: 50px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+}
+
+/* Neckline Measurement select */
+#step5 #necklineMeasurementSelect {
+    max-width: 100px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+}
+
+/* Neckline Custom input (short) */
+#step5 #necklineCustomInput {
+    max-width: 80px;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+}
+
+/* Preferred Delivery Date input */
+#step5 #deliveryDate {
+    max-width: 120px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+}
+
+/* Design Consultation select */
+#step5 #designConsult {
+    max-width: 80px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+}
+
+/* Container should have padding and max-width */
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Grid container for selection options */
+.grid-container {
+    display: flex;
+    flex-wrap: wrap; /* ensures items wrap on smaller screens */
+    gap: 15px;
+}
+
+/* Input blocks to adapt width */
+.form-group-block,
+.input-block {
+    flex: 1 1 200px; /* grows/shrinks with screen, min width 200px */
+    min-width: 150px;
+}
+
+button {
+    padding: 10px 18px;
+    font-size: 1rem;
+}
+
+.customization-card {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto; /* centers card with spacing */
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+}
+
+/* Small devices - smartphones */
+@media (max-width: 768px) {
+    .grid-container {
+        flex-direction: column;
+    }
+
+    .form-group-row {
+        flex-direction: column;
+    }
+
+    .quantity-wrapper-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-product-col img {
+        width: 60px; /* smaller images */
+    }
+
+    .customization-card {
+        padding: 15px;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%; /* buttons fill screen */
+    }
+}
+
+#fabricGallery,
+#necklineGrid {
+    display: grid;
+    gap: 15px; /* space between items */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+}
+
+#sleeveGrid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+}
+
+@media (max-width: 1024px) {
+    #fabricGallery,
+    #necklineGrid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+    #sleeveGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #fabricGallery,
+    #necklineGrid,
+    #sleeveGrid {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+    }
+}
