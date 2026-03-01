@@ -1265,3 +1265,80 @@ button {
         grid-template-columns: 1fr; /* 1 column on mobile */
     }
 }
+
+/* Fixed grid layout for desktops/laptops */
+#fabricGallery,
+#necklineGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 per row */
+    gap: 15px;
+}
+
+#sleeveGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 per row */
+    gap: 15px;
+}
+
+/* Images fixed proportion */
+.grid-container img {
+    width: 100%;
+    height: 200px; /* same height for all */
+    object-fit: cover; /* prevent stretching */
+    border-radius: 8px;
+}
+
+/* Align titles and fonts inside cards */
+.grid-container .item-title {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-top: 5px;
+}
+
+/* Ensure customization card looks neat */
+.customization-card {
+    padding: 20px 25px;
+    margin-top: 40px;
+    max-width: 800px; /* keep card width reasonable */
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 12px;
+}
+
+/* Reduce select/input sizes individually */
+#embroideryDetail,
+#stitchingService,
+#necklineMeasurementSelect,
+#embroideryIntensity,
+#measurementType,
+#standardSizeSelect,
+#customMeasurementsInput,
+#necklineCustomInput {
+    width: 220px; /* fixed uniform width */
+}
+
+#deliveryDate,
+#designConsult {
+    width: 180px;
+}
+
+/* Labels normal-case */
+.customization-card label {
+    text-transform: none;
+    font-weight: 500;
+}
+
+/* Popup matches background */
+.success-overlay {
+    background: rgba(255, 255, 255, 0.9); /* same as page bg or slightly transparent */
+    backdrop-filter: blur(2px);
+}
+
+.success-card {
+    background: #fff; /* match site background */
+    padding: 25px 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
