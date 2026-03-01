@@ -1342,3 +1342,110 @@ button {
     max-width: 400px;
     margin: 0 auto;
 }
+
+/* =========================
+  Step 2–4 Grids (Fixed)
+========================= */
+
+/* Fabrics gallery */
+#fabricGallery {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
+}
+
+#fabricGallery img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+}
+
+/* Necklines */
+#necklineGrid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
+}
+
+#necklineGrid img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+}
+
+/* Sleeves */
+#sleeveGrid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 15px !important;
+}
+
+#sleeveGrid img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+}
+
+/* Titles under images */
+.grid-container .item-title {
+    text-align: center !important;
+    font-size: 0.95rem !important;
+    margin-top: 5px !important;
+}
+
+/* =========================
+  Step 5: Customization Card
+========================= */
+
+.customization-card {
+    padding: 25px !important;
+    margin-top: 40px !important;
+    max-width: 800px !important;
+    background: #fff !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    border-radius: 12px !important;
+}
+
+/* Reduce widths of inputs/selects individually */
+#embroideryDetail,
+#stitchingService,
+#necklineMeasurementSelect,
+#embroideryIntensity,
+#measurementType,
+#standardSizeSelect,
+#customMeasurementsInput,
+#necklineCustomInput {
+    width: 220px !important;
+}
+
+#deliveryDate,
+#designConsult {
+    width: 180px !important;
+}
+
+/* Labels normal-case */
+.customization-card label {
+    text-transform: none !important;
+    font-weight: 500 !important;
+}
+
+/* =========================
+  Thank You Popup
+========================= */
+
+.success-overlay {
+    background: rgba(255,255,255,0.9) !important;
+    backdrop-filter: blur(2px) !important;
+}
+
+.success-card {
+    background: #fff !important;
+    padding: 25px 30px !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+}
